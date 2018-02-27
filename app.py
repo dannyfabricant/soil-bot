@@ -20,7 +20,7 @@ beds = {
             'location': '5a830958f6a328228cafe85f'
         },
         'moisture': {
-            'CHANNEL': 1,
+            'CHANNEL': 0,
             'CLK': 18,
             'MISO': 23,
             'MOSI': 24,
@@ -35,7 +35,7 @@ beds = {
             'location': '5a830958f6a328228cafe85f'
         },
         'moisture': {
-            'CHANNEL': 1,
+            'CHANNEL': 0,
             'CLK': 18,
             'MISO': 23,
             'MOSI': 24,
@@ -50,7 +50,7 @@ beds = {
             'location': '5a830958f6a328228cafe85f'
         },
         'moisture': {
-            'CHANNEL': 1,
+            'CHANNEL': 0,
             'CLK': 18,
             'MISO': 23,
             'MOSI': 24,
