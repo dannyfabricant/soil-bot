@@ -1,9 +1,10 @@
 import time
-import datetime
+from datetime import datetime
+import pytz
 
 # global variables
 base_url = 'http://192.168.1.7:3000/'
-interval = 60 #seconds
+interval = 30 #seconds
 
 
 # import local functions
@@ -31,7 +32,22 @@ beds = {
         'name': '2',
         'url': {
             'plot': '5a83097df6a328228cafe861',
-            'location': '5a830958f6a328228cafe85fsfdb'
+            'location': '5a830958f6a328228cafe85f'
+        },
+        'moisture': {
+            'CHANNEL': 1,
+            'CLK': 18,
+            'MISO': 23,
+            'MOSI': 24,
+            'CS': 25
+        },
+        'temp_id': '28-00000a016e68' 
+    },
+    3 : {
+        'name': '3',
+        'url': {
+            'plot': '5a85b11b92fcff3e9ac3f198',
+            'location': '5a830958f6a328228cafe85f'
         },
         'moisture': {
             'CHANNEL': 1,
@@ -43,9 +59,6 @@ beds = {
         'temp_id': '28-00000a016e68' 
     }
 }
-
-# print(beds['1']['moisture']['pins'])
-
 	
 while True:
     length = len(beds)
@@ -66,16 +79,22 @@ while True:
         temp_id = bed['temp_id']
         temperature = temp.read_temp(temp_id)
 
-        #send data to server
+        # create timestamp
+        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+        #create objects for request
         data = {
-            'time': time.time(),
+            'timestamp': timestamp,
             'temp': temperature,
             'moisture': moisture
         }
         url = base_url + bed['url']['location'] + '/' + bed['url']['plot'] + '/' + 'add-data'
-        server.send_data(url, data)
-        print(url)
-        print(data)
 
+        # send request
+        print(data)
+        server.send_data(url, data)
+
+        # increment loop
+        i = i+1
 
     time.sleep(interval)
