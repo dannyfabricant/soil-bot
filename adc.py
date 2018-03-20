@@ -20,3 +20,11 @@ def read_moisture(CHANNEL ,CLK, MISO, MOSI, CS):
     moisture = mcp.read_adc(CHANNEL)
 
     return moisture
+
+
+# uncomment bollow to test individual mcp3008 channels bellow
+# while 1:
+
+# 	print(read_moisture(0,18,23,24,25));
+# 	print(read_moisture(1,18,23,24,25));
+# 	time.sleep(1)

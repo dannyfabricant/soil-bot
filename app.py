@@ -4,7 +4,7 @@ import pytz
 
 # global variables
 base_url = 'http://192.168.1.7:3000/'
-interval = 30 #seconds
+interval = 3 #in minutes
 
 
 # import local functions
@@ -26,7 +26,7 @@ beds = {
             'MOSI': 24,
             'CS': 25
         },
-        'temp_id': '28-00000a016e68' 
+        'temp_id': '28-0417a2f3c1ff' 
     },
     2 : {
         'name': '2',
@@ -41,7 +41,7 @@ beds = {
             'MOSI': 24,
             'CS': 25
         },
-        'temp_id': '28-00000a016e68' 
+        'temp_id': '28-0417a2f3c1ff' 
     },
     3 : {
         'name': '3',
@@ -50,13 +50,28 @@ beds = {
             'location': '5a830958f6a328228cafe85f'
         },
         'moisture': {
-            'CHANNEL': 0,
+            'CHANNEL': 1,
             'CLK': 18,
             'MISO': 23,
             'MOSI': 24,
             'CS': 25
         },
-        'temp_id': '28-00000a016e68' 
+        'temp_id': '28-0417a2ecd4ff' 
+    },
+    4 : {
+        'name': '4',
+        'url': {
+            'plot': '5a94e21c95bf020cf443bf99',
+            'location': '5a830958f6a328228cafe85f'
+        },
+        'moisture': {
+            'CHANNEL': 1,
+            'CLK': 18,
+            'MISO': 23,
+            'MOSI': 24,
+            'CS': 25
+        },
+        'temp_id': '28-0417a2ecd4ff' 
     }
 }
 	
@@ -73,6 +88,7 @@ while True:
         MISO = bed['moisture']['MISO']
         MOSI = bed['moisture']['MOSI']
         CS   = bed['moisture']['CS']
+        
         moisture = adc.read_moisture(CHANNEL, CLK, MISO, MOSI, CS)
 
         # get temp readings
@@ -97,4 +113,4 @@ while True:
         # increment loop
         i = i+1
 
-    time.sleep(interval)
+    time.sleep(interval*60)
